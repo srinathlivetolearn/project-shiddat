@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Buggy</string>
+    <string name="str_btn_search">Search</string>
+    <string name="str_enter_name">Enter a name to search</string>
+</resources>
