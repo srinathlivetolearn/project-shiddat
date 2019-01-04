@@ -1,5 +1,6 @@
 package io.srinathr.labs.buggy;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -11,6 +12,9 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.SimpleCursorAdapter;
+
+import io.srinathr.labs.buggy.service.ContactSyncService;
+import io.srinathr.labs.buggy.tasks.SyncContactTask;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     protected static final String[] PROJECTION = {ContactsContract.Data._ID,ContactsContract.Data.DISPLAY_NAME};
@@ -28,7 +32,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     public void searchContacts(View view) {
+        //Intent serviceIntent = new Intent(this,ContactSyncService.class);
+        //this.startService(serviceIntent);
 
+        new SyncContactTask(getApplicationContext()).execute("");
     }
 
     @NonNull
