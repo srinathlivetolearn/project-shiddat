@@ -45,6 +45,7 @@ public class ContactSyncService extends IntentService {
                 String email = pCursor.getString(pCursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.DISPLAY_NAME));
                 contacts.add(new Contact(id,name,number,email));
             }
+            pCursor.close();
         }
         if(eCursor != null && eCursor.getCount() > 0) {
             while (eCursor.moveToNext()) {
@@ -52,6 +53,7 @@ public class ContactSyncService extends IntentService {
                 String email = eCursor.getString(pCursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
                 contacts.add(new Contact(id,"","",email));
             }
+            eCursor.close();
         }
         File file = getFile("payLoad", getApplicationContext());
         try (Writer fileWriter = new FileWriter(file)){
